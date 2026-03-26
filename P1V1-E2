@@ -1,0 +1,54 @@
+#include <stdio.h>
+
+int main() {
+
+    char nombre[50];
+    int cuenta;
+    float consumo;
+    float tarifa;
+    float monto = 0;
+    float cargo_fijo = 15.0;
+
+    printf("=== SISTEMA DE AGUA POTABLE ===\n");
+
+    printf("Ingrese el nombre del cliente: ");
+    scanf("%s", nombre);
+
+    printf("Ingrese el numero de cuenta: ");
+    scanf("%d", &cuenta);
+
+    printf("Ingrese el consumo en m3: ");
+    scanf("%f", &consumo);
+
+    // Validación de consumo
+    if (consumo == 0) {
+        printf("\nSIN CONSUMO REGISTRADO\n");
+        printf("Monto a pagar: 0.00 Bs\n");
+    } else {
+
+        // Determinar tarifa según rango
+        if (consumo <= 10) {
+            tarifa = 3.50;
+        } else if (consumo <= 30) {
+            tarifa = 5.00;
+        } else if (consumo <= 60) {
+            tarifa = 7.50;
+        } else {
+            tarifa = 12.00;
+        }
+
+        // Cálculo del monto
+        monto = (consumo * tarifa) + cargo_fijo;
+
+        // Mostrar resultados
+        printf("\n--- FACTURA ---\n");
+        printf("Cliente: %s\n", nombre);
+        printf("Cuenta: %d\n", cuenta);
+        printf("Consumo: %.2f m3\n", consumo);
+        printf("Tarifa aplicada: %.2f Bs/m3\n", tarifa);
+        printf("Cargo fijo: %.2f Bs\n", cargo_fijo);
+        printf("Monto total a pagar: %.2f Bs\n", monto);
+    }
+
+    return 0;
+}
