@@ -1,0 +1,31 @@
+#include <stdio.h>
+
+int main() {
+
+    float base, altura, area;
+
+    printf("Ingrese la base del triangulo: ");
+    scanf("%f", &base);
+
+    printf("Ingrese la altura del triangulo: ");
+    scanf("%f", &altura);
+
+    if (base <= 0 || altura <= 0) {
+        printf("Error: los valores deben ser mayores a cero.\n");
+    } else {
+
+        area = (base * altura) / 2;
+
+        printf("Area del triangulo: %.2f\n", area);
+
+        if (area <= 20) {
+            printf("Triangulo pequeno\n");
+        } else if (area <= 100) {
+            printf("Triangulo mediano\n");
+        } else {
+            printf("Triangulo grande\n");
+        }
+    }
+
+    return 0;
+}
