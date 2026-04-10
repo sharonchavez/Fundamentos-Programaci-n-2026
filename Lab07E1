@@ -1,0 +1,41 @@
+#include <iostream>
+#include <iomanip> // Para manejar decimales con precisión
+
+using namespace std;
+
+int main() {
+    int n;
+    // Usamos double para el cálculo de la división y evitar que se pierdan decimales
+    double a = 0, b = 1, fib; 
+    double denominador = 1;
+    double sumaTotal = 0;
+
+    cout << "Ingrese la cantidad de terminos a generar: ";
+    cin >> n;
+
+    cout << "\nSerie generada:" << endl;
+    cout << "S = ";
+
+    for (int i = 1; i <= n; i++) {
+        // 1. Mostrar el término actual
+        cout << a << "/" << denominador;
+        if (i < n) cout << " + ";
+
+        // 2. Realizar la suma acumulada
+        sumaTotal += (a / denominador);
+
+        // 3. Generar el siguiente número de Fibonacci
+        // Guardamos la suma en una variable temporal
+        fib = a + b;
+        // Desplazamos los valores: el actual pasa a ser el anterior
+        a = b;
+        b = fib;
+
+        // 4. Actualizar el denominador al siguiente número impar
+        denominador += 2;
+    }
+
+    cout << "\n\nEl resultado de la suma de la serie es: " << fixed << setprecision(4) << sumaTotal << endl;
+
+    return 0;
+}
