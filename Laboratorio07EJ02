@@ -1,0 +1,44 @@
+#include <iostream>
+#include <cmath>   // Para la función pow()
+#include <iomanip>
+
+using namespace std;
+
+int main() {
+    double x;
+    int n;
+    double sumaCosh = 1.0; // El primer término de la serie siempre es 1
+    double factorial = 1.0;
+
+    cout << "--- Simulador de Deflexion de Vigas (Serie Taylor) ---" << endl;
+    cout << "Ingrese la distancia desde el centro (x): ";
+    cin >> x;
+    cout << "Ingrese el numero de precision (n terminos extra): ";
+    cin >> n;
+
+    cout << "\nCalculando aproximacion..." << endl;
+    cout << "Termino 0: 1.000" << endl;
+
+    for (int i = 1; i <= n; i++) {
+        // En esta serie solo usamos exponentes pares: 2, 4, 6...
+        int exponente = 2 * i;
+
+        // Calcular el factorial del exponente actual
+        // Tip: Multiplicamos el factorial anterior por los dos nuevos números
+        // Ejemplo: 4! es 2! * 3 * 4
+        factorial = factorial * (exponente - 1) * exponente;
+
+        // Calcular el término actual: x^exponente / factorial
+        double termino = pow(x, exponente) / factorial;
+        
+        sumaCosh += termino;
+
+        cout << "Termino " << i << " (x^" << exponente << "): " << fixed << setprecision(5) << termino << endl;
+    }
+
+    cout << "-------------------------------------------" << endl;
+    cout << "Valor aproximado de la curva (Cosh): " << sumaCosh << endl;
+    cout << "-------------------------------------------" << endl;
+
+    return 0;
+}
